@@ -5,7 +5,6 @@ import com.sopheak.restfulapi001.exception.customexception.CustomException;
 import com.sopheak.restfulapi001.mapper.CustomerMapStruct;
 import com.sopheak.restfulapi001.model.dto.CreateCustomerDto;
 import com.sopheak.restfulapi001.model.dto.CustomerResponseDto;
-import com.sopheak.restfulapi001.model.dto.UpdateCategoryDto;
 import com.sopheak.restfulapi001.model.dto.UpdateCustomerDto;
 import com.sopheak.restfulapi001.repository.CustomerRepository;
 import com.sopheak.restfulapi001.repository.OrderRepository;
@@ -15,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.util.EnumUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     Optional<Category> findCategoryByUuid(String uuid);
     Page<Category> findCategoriesByIsDeletedFalse(Pageable pageable);
+    Optional<Category> findCategoryByCategoryName(String name);
 }

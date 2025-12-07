@@ -1,7 +1,7 @@
 package com.sopheak.restfulapi001.entities;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +13,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String uuid;
-    @Column(name = "product_name", length = 300, nullable = false, updatable = false, unique = true)
+    @Column(name = "product_name", length = 300, nullable = false, unique = true)
     private String productName;
     private Date createDate;
     private Date expireDate;

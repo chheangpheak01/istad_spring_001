@@ -8,5 +8,4 @@ public record UpdateCategoryDto(
         @NotEmpty(message = "Category name must be not empty")
         @NotNull(message = "Category name must be not null")
         String categoryName
-
 ){}
