@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ProductService {
-    Page<ProductResponseDto> getAllProductsByPagination(Pageable pageable);
     ProductResponseDto getProductByUuid(String uuid);
+    Page<ProductResponseDto> getAllProductsByPagination(Pageable pageable);
     ProductResponseDto createProduct(CreateProductDto createProductDto);
     String deleteProductByUuid(String uuid);
     ProductResponseDto updateProductByUuid(String uuid, UpdateProductDto updateProductDto);

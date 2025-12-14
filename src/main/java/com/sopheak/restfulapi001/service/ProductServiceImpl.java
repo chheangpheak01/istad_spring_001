@@ -8,6 +8,7 @@ import com.sopheak.restfulapi001.model.dto.ProductResponseDto;
 import com.sopheak.restfulapi001.model.dto.UpdateProductDto;
 import com.sopheak.restfulapi001.repository.CategoryRepository;
 import com.sopheak.restfulapi001.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements ProductService{
     public ProductResponseDto getProductByUuid(String uuid) {
         Optional<Product> product = productRepository.findProductByUuid(uuid);
         if(product.isEmpty()){
-            throw new CustomException("Product not found");
+            throw new CustomException("Product not found with uuid: " + uuid);
         }
         System.out.println("Fetched productName: " + product.get().getProductName());
         return productMapStruct.mapFromProductToProductResponseDto(product.get());
@@ -66,11 +67,12 @@ public class ProductServiceImpl implements ProductService{
         return productMapStruct.mapFromProductToProductResponseDto(product);
     }
 
+    @Transactional
     @Override
     public String deleteProductByUuid(String uuid) {
         Optional<Product> product = productRepository.findProductByUuid(uuid);
         if(product.isEmpty()){
-            throw new CustomException("Product not found");
+            throw new CustomException("Product not found with uuid:  " + uuid);
         }
         product.get().setIsDeleted(true);
         productRepository.save(product.get());
@@ -81,7 +83,7 @@ public class ProductServiceImpl implements ProductService{
     public ProductResponseDto updateProductByUuid(String uuid, UpdateProductDto updateProductDto) {
         Optional<Product> product = productRepository.findProductByUuid(uuid);
         if(product.isEmpty()){
-            throw new CustomException("Product not found");
+            throw new CustomException("Product not found with uuid: " + uuid);
         }
         product.get().setProductName(updateProductDto.productName());
         Date expireDate = Date.from(updateProductDto.expireDate().atStartOfDay(ZoneId.systemDefault()).toInstant());

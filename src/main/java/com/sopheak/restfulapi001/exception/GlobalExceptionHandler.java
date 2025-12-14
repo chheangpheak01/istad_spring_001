@@ -32,4 +32,17 @@ public class GlobalExceptionHandler {
                 .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(aipErrorResponse);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<AIPErrorResponse> handleAnyError(RuntimeException exception){
+        AIPErrorResponse apiErrorResponse = AIPErrorResponse
+                .builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+                .timeStamp(Date.from(Instant.now()))
+                .errorMessage(exception.getMessage())
+                .build();
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(apiErrorResponse);
+    }
 }
